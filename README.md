@@ -1,6 +1,7 @@
 # Battlev Discord Bot
 
-A personal discord bot for my channel.
+A personal discord bot for my channel. If you want to clone, be sure to change the name of the bot.
+The full guide can be seen [here](https://aminroslan.com/posts/how-to-create-a-discord-bot)
 
 ## What this bot can do:
 1. Get images from Imgur
