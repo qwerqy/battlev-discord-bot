@@ -2,6 +2,7 @@ require("dotenv").config();
 const Discord = require("discord.js");
 const fetch = require("node-fetch");
 
+// creates Client instance
 const client = new Discord.Client();
 
 client.on("ready", () => {
@@ -9,6 +10,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async msg => {
+  // Sets commands that start with '!'
   if (msg.content.substring(0, 1) == "!") {
     let args = msg.content.substring(1).split(" ");
     let cmd = args[0];
@@ -41,6 +43,7 @@ client.on("message", async msg => {
         msg.channel.send(embed);
         break;
       case "imgur":
+        // Fetch image from Imgur API
         const options = {
           method: "GET",
           headers: {
