@@ -4,11 +4,6 @@ const fetch = require("node-fetch");
 
 const client = new Discord.Client();
 
-let fields = [
-  "!ping: Test bot",
-  "!imgur <query>: Get an image based on <query>"
-];
-
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
