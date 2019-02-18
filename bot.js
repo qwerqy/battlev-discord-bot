@@ -5,8 +5,41 @@ const fetch = require("node-fetch");
 // creates Client instance
 const client = new Discord.Client();
 
+// Music Player logic
+client.music = require("discord.js-musicbot-addon");
+
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.music.start(client, {
+  // Set the api key used for YouTube.
+  // This is required to run the bot.
+  youtubeKey: process.env.YOUTUBE_API,
+
+  botPrefix: "..",
+
+  // The PLAY command Object.
+  play: {
+    // Usage text for the help command.
+    usage: "{{prefix}}play some tunes",
+    // Whether or not to exclude the command from the help command.
+    exclude: false
+  },
+
+  // Make it so anyone in the voice channel can skip the
+  // currently playing song.
+  anyoneCanSkip: true,
+
+  // Make it so the owner (you) bypass permissions for music.
+  ownerOverMember: true,
+  ownerID: "battlevagina#2619",
+
+  // The cooldown Object.
+  cooldown: {
+    // This disables the cooldown. Not recommended.
+    enabled: false
+  }
 });
 
 client.on("message", async msg => {
@@ -54,7 +87,7 @@ client.on("message", async msg => {
         }
         break;
       case "imgur":
-        let q = args[1];
+        let q = args;
         // Fetch image from Imgur API
         const options = {
           method: "GET",
