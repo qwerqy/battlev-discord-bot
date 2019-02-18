@@ -15,9 +15,9 @@ client.on("ready", () => {
 client.music.start(client, {
   // Set the api key used for YouTube.
   // This is required to run the bot.
-  youtubeKey: process.env.YOUTUBE_API,
+  youtubeKey: `${process.env.YOUTUBE_API}`,
 
-  botPrefix: "..",
+  botPrefix: process.env.NODE_ENV !== "production" ? "..." : "..",
 
   // The PLAY command Object.
   play: {
