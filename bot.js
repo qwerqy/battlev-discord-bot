@@ -14,13 +14,12 @@ client.on("message", async msg => {
   if (msg.content.substring(0, 1) == "!") {
     let args = msg.content.substring(1).split(" ");
     let cmd = args[0];
-    let q = args[1];
 
     args = args.splice(1);
     switch (cmd) {
       // !ping
-      case "ping":
-        msg.reply("pong!");
+      case "status":
+        msg.reply("I am here!");
         break;
       case "help":
         const embed = new Discord.RichEmbed({
@@ -29,9 +28,8 @@ client.on("message", async msg => {
           description: "Commands:",
           fields: [
             {
-              name: "!ping",
-              value:
-                "To test bot. Successful test will result in a reply 'pong!"
+              name: "!status",
+              value: "Bot Status!"
             },
             {
               name: "!imgur <query>",
@@ -42,7 +40,21 @@ client.on("message", async msg => {
 
         msg.channel.send(embed);
         break;
+      case "ask":
+        let question = args.join(" ");
+        const replies = ["yes", "no", "hm", "we lost bois", "oof"];
+        const randomReply = length => {
+          return replies[Math.floor(Math.random() * Math.floor(length))];
+        };
+        debugger;
+        if (question.indexOf("?") >= 1) {
+          msg.reply(randomReply(replies.length));
+        } else {
+          msg.reply("I don't understand the fuck you're saying.");
+        }
+        break;
       case "imgur":
+        let q = args[1];
         // Fetch image from Imgur API
         const options = {
           method: "GET",
@@ -77,6 +89,7 @@ client.on("message", async msg => {
             })
           );
         }
+        break;
     }
   }
 });
