@@ -15,7 +15,7 @@ client.on("ready", () => {
 client.music.start(client, {
   // Set the api key used for YouTube.
   // This is required to run the bot.
-  youtubeKey: `${process.env.YOUTUBE_API}`,
+  youtubeKey: process.env.YOUTUBE_API,
 
   botPrefix: process.env.NODE_ENV !== "production" ? "..." : "..",
 
@@ -33,7 +33,7 @@ client.music.start(client, {
 
   // Make it so the owner (you) bypass permissions for music.
   ownerOverMember: true,
-  ownerID: "battlevagina#2619",
+  ownerID: process.env.OWNER_ID,
 
   // The cooldown Object.
   cooldown: {
